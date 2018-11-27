@@ -1,0 +1,291 @@
+@import "compass";
+
+$default-transition-duration:.3s;
+
+
+$icon-sprite-dimensions:true;
+$icon-layout:smart;
+@import "icon/*.png";
+
+@include global-reset;
+@include all-icon-sprites;
+
+*{@include box-sizing(border-box);}
+input, textarea{ border: none; -webkit-appearance: none; @include border-radius(0px); }
+
+/*------------------------------------*\
+    $GENERIC
+\*------------------------------------*/
+body{
+    color: #8f99b7;
+    font-family: "Ubuntu";
+    font-size: 16px;
+    background-color: #fff;
+}
+i{display: inline-block;}
+h1{font-size: 28px; text-align: center; color: #fff; font-weight: bold; margin: 45px 0; display: none;}
+p{margin: 1em 0px; @include clearfix;}
+input.text{
+    display: block;
+    width: 100%;
+    height: 48px;
+    border: 1px solid #1f253d;
+    background-color: #4f597b;
+    color: #fff;
+    font-size: 16px;
+    padding-left: 10px;
+    outline:none;
+    @include border-radius(4px);
+    @include background-clip(padding-box);
+    @include transition-duration;
+    &:focus{
+        border: 1px solid #11a7ab;
+    }
+}
+input.submit, .btn{
+    display: inline-block;
+    padding: 0 5px;
+    height: 50px; line-height: 50px;
+    border: none;
+    text-transform: uppercase; text-align: center;
+    font-size: 16px; color: #fff;
+    @include border-radius(4px);
+    @include background-clip(padding-box);
+    background-color: #e54b65;
+    float: right;
+    text-decoration: none;
+}
+.btn{
+    background-color: #11a7ab;
+    float: left;
+}
+.back{
+    display: block;
+    position: absolute;
+    top: 0; left: 0;
+    background:url(img/back.png) center center no-repeat;
+    z-index: 10;
+    width: 60px; height: 60px;
+}
+.loader{
+    @extend .panel;
+    background:url(img/loader.gif) center center no-repeat rgba(57, 66, 100, 0.6);
+    z-index: 500;
+}
+
+/*------------------------------------*\
+    $Elem
+\*------------------------------------*/
+.row-title{
+    height: 60px; line-height: 60px;
+    text-transform: uppercase;
+    background-color: #cb314b;
+    @include border-radius(4px 4px 0 0);
+    @include background-clip(padding-box);
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+}
+.row{
+    height: 60px;
+    background-color: #394163;
+    margin: 1px 0;
+    position: relative;
+    i{
+        position: absolute;
+        left: 20px;
+        top: 5px;
+    }
+    .temperature{
+        color: #fff;
+        font-size: 18px;
+        position: absolute;
+        right: 20px;
+        line-height: 60px;
+    }
+    strong{ color: #fff; text-transform: uppercase; }
+    .date{
+        line-height: 60px;
+        font-size: 16px;
+        position: absolute;
+        left: 90px; top: 0;
+    }
+}
+.row_active{
+    margin: 0;
+    height: 133px;
+    background-color: #e54b65;
+    color: #FFF!important;
+    .date{ position: absolute; top: 0; left: 25px; }
+    .temperature{
+        position: absolute;
+        top: 45px; left: 25px;
+        font-size: 70px; line-height: 70px;
+    }
+    i{ position: absolute; top: 20px; right: 25px; left: auto; }
+    i{@include icon-sprite(clouds-big);}
+}
+
+
+/*------------------------------------*\
+    $INTERFACE
+\*------------------------------------*/
+.header{
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 60px; line-height: 60px;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: #2EB1FF;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.06);
+}
+.view{
+    position: absolute;
+    top: 0; right: 0; bottom: 60px; left: 0;
+    .heading {
+        position: absolute;
+        top: 60px; left: 0; right: 0;
+        background: linear-gradient(to right, #2ea8fd 0%, #3cc9f7 100%);
+        color: #fff; text-align: center;
+        height: 25%;
+        font-size: 18px;
+        display: flex;
+        align-items: center; justify-content: center;
+    }    
+}
+
+.nav{
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0px -1px 5px 0px rgba(0, 0, 0, 0.1);
+    @include clearfix;
+    a{
+        display: block;
+        width: 25%;
+        height: 60px; line-height: 15px;
+        float: left;
+        @include transition-duration;
+        text-decoration: none;
+        color: #868686;
+        font-size: 12px;
+        padding-top: 6px;
+    }
+    i{
+        margin: 0 auto;
+        background-image: url('img/menu.jpg');
+        background-repeat: no-repeat;
+        display: block;
+        height: 30px;
+        width: 30px;
+        &.icon-home {
+            background-position: -1px 0;
+        }
+        &.icon-tours {
+            background-position: -30px 0;
+        }
+        &.icon-explore {
+            background-position: -61px 0;
+        }
+        &.icon-profil {
+            background-position: -91px 0;
+        }   
+    }
+    .active{
+        color: #000;
+        border-bottom: 2px solid #3dc7f6;
+        i {
+            background-position-y: -30px;
+        }
+    }    
+}
+
+.panel{
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    overflow-x:hidden;
+    overflow-y:scroll;
+    -webkit-overflow-scrolling:touch;
+    @include transition-duration(.5s);
+
+    &.home-bloc {
+        top: 32%;        
+        overflow-y: hidden;
+    }
+    .menu-home {
+
+        span {
+            display: flex;
+            align-items: center; justify-content: space-between;
+        }
+        .top {
+            .item-menu {
+                width: 47%;           
+            }
+        }
+        .bottom {
+            margin-top:5%;
+            .item-menu {
+                width: 100%;   
+            }            
+        }
+        .item-menu {
+            background: #fff;
+            padding: 10%;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);    
+            text-align: center; text-decoration: none;
+            color: #000;
+            font-size: 14px;
+            border: solid 1px transparent;    
+            i{
+                margin: 0 auto;
+                background-image: url(img/travel.jpg);
+                background-repeat: no-repeat;
+                display: block;
+                height: 50px;
+                width: 50px;  
+                &.icon-plane{
+                   background-position: 0 0; 
+                }
+                &.icon-train {
+                    background-position-y: -50px;
+                } 
+                &.icon-car {
+                    background-position-y: -100px;
+                }              
+            }                
+        }
+    }
+}
+
+.view {
+    .plane-bloc {
+        top: 25%;
+        .item-menu {
+            width: 130px;
+            margin: 0 auto;
+            border-radius: 130px;
+            box-shadow: none;
+            height: 130px;     
+            padding: 3% 10% 10% 10%;
+            i {
+                width: 80px;
+                height: 70px;
+                background-size: 95%;
+                background-image: url(img/travel.jpg);
+                background-position: -3px -12px;                
+            }       
+        }
+    }
+}
+.panel-padding{ padding:0 25px; }
+
+.left{@include transform(translate3D(-100%, 0, 0));}
+.center{@include transform(translate3D(0, 0, 0));}
+.right{@include transform(translate3D(100%, 0, 0));}

@@ -1,0 +1,26 @@
+<header class="header">
+    Home
+</header>
+        
+<section ng-controller="WeatherCtrl">
+
+	<a class="back" ng-hide="panel==0" ng-click="panel=0"></a>
+
+	<section class="heading">
+        <p>You will travel by ?</p>		
+	</section>
+
+    <section class="panel home-bloc panel-padding">
+
+        <nav class="menu-home" ng-controller="SecNavCtrl">
+        	<span class="top">
+	        	<a class="item-menu plane-menu" href="#plane" ng-click="menu='plane'"><i class="icon-plane"></i>Plane</a>
+	        	<a class="item-menu train-menu" href="#train" ng-click="menu='train'"><i class="icon-train"></i>Train</a>        		
+        	</span>
+        	<span class="bottom">
+				<a class="item-menu car-menu" href="#car" ng-click="menu='car'"><i class="icon-car"></i>Car</a>        		
+        	</span>
+        </nav>
+
+    </section>
+</section>
